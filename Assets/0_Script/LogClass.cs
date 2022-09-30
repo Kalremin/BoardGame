@@ -7,7 +7,7 @@ using UnityEngine;
 
 public static class LogClass
 {
-    static bool info = true;
+    static bool info = false;
     static bool warn = false;
     static bool error = false;
 

@@ -8,11 +8,6 @@ public static class OptionData
     const string volumeEffectStr = "VolumeBGM";
     const string resolutionStr = "VolumeBGM";
 
-    //static float volumeBgm = 1f;
-    //static float volumeEffect = 1f;
-    //static int resolutionValue = 0;
-
-
     public static void SetResolution(int value)
     {
         PlayerPrefs.SetInt(resolutionStr, value);

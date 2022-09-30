@@ -60,27 +60,14 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
-        
-        //_animator.SetTrigger("idle");
 
         _teamObj.GetComponent<MeshRenderer>().material = _PlayerTeam ?
             SpawnUnitManager._instance._playerColor :
             SpawnUnitManager._instance._enemyColor;
 
-        //_maxHealth = _health;
-        //_currentTurn += _TurnTime;
         _name = gameObject.name;
     }
 
-    //public virtual void Attack(GameObject gameObject) 
-    //{
-    //    damObj = gameObject;
-    //    _animator.SetTrigger(EnumList.eAnimatorParameter.Tri_Attack.ToString());
-        
-    //    /*
-    //     공격 모션
-    //    */
-    //}
     public virtual void UseMagic(GameObject obj) 
     {
 
