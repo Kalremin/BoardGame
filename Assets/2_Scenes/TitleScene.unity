@@ -7649,9 +7649,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _haveMonsters:
-  - {fileID: 8967175362187270803, guid: 5f1e079087dfc4c4c886712547aab20b, type: 3}
-  - {fileID: -6449540709350728042, guid: ab67dd86f06962b4a8f6582f95381ff7, type: 3}
-  - {fileID: 2877604087303071809, guid: 137ce6da72e463f45a491ca4c164c463, type: 3}
+  - {fileID: 6346127388532976304, guid: 0f2d6aa925655fa46b62bb8bbaf847f9, type: 3}
+  - {fileID: 6346127388532976304, guid: 0f2d6aa925655fa46b62bb8bbaf847f9, type: 3}
+  - {fileID: 6346127388532976304, guid: 0f2d6aa925655fa46b62bb8bbaf847f9, type: 3}
 --- !u!4 &1826210993
 Transform:
   m_ObjectHideFlags: 0

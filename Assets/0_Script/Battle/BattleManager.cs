@@ -18,8 +18,8 @@ using UnityEngine.EventSystems;
 public enum eBattleType
 {
     Normal=8,
-    Elite=10,
-    Boss=14
+    //Elite=10,
+    Boss=10//14
 }
 
 public enum eBattleState

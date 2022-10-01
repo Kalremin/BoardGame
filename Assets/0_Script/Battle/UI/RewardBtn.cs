@@ -38,9 +38,9 @@ public class RewardBtn : MonoBehaviour
                     case eBattleType.Normal:
                         rewardVal = Random.Range(50, 100);
                         break;
-                    case eBattleType.Elite:
-                        rewardVal = Random.Range(150, 200);
-                        break;
+                    //case eBattleType.Elite:
+                    //    rewardVal = Random.Range(150, 200);
+                        //break;
                     case eBattleType.Boss:
                         rewardVal = Random.Range(300, 400);
                         break;
@@ -55,9 +55,9 @@ public class RewardBtn : MonoBehaviour
                     case eBattleType.Normal:
                         rewardVal = Random.Range(25, 50);
                         break;
-                    case eBattleType.Elite:
-                        rewardVal = Random.Range(75, 100);
-                        break;
+                    //case eBattleType.Elite:
+                    //    rewardVal = Random.Range(75, 100);
+                        //break;
                     case eBattleType.Boss:
                         rewardVal = Random.Range(150, 200);
                         break;

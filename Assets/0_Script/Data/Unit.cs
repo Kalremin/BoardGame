@@ -86,6 +86,7 @@ public class Unit : MonoBehaviour
     }
     public virtual void Dead()
     {
+        UnitTurn._instance.ReturnUIPreb(_SpawnIdx); // 차례 리스트 제외
         _animator.SetBool(EnumList.eAnimatorParameter.Bool_Death.ToString(), true);
 
         SpawnUnitManager._instance.RemoveUnitInList(gameObject);

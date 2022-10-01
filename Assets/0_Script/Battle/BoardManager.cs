@@ -193,7 +193,7 @@ public class BoardManager : MonoBehaviour
             {
                 for (int j = y-temp.MagicRange; j <= y+ temp.MagicRange; j++)
                 {
-                    if (ExistUnitInTile(i, j) || i == j)
+                    if (ExistUnitInTile(i, j))//|| i == j)
                     {
                         HighlightTile(EnumList.eTileHighlightStatus.Magic, battleType, i, j);
                     }

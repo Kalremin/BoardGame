@@ -248,15 +248,12 @@ public class SpawnUnitManager : MonoBehaviour
         }
         LogClass.LogWarn("unit// "+builder.ToString());
 
-        //return _spawnedUnits[idx].GetComponent<Unit>();
         return tempUnit;
     }
 
     // 죽은 유닛을 리스트에서 제외
     public void RemoveUnitInList(GameObject removeUnit)
     {
-        //UnitTurn._instance.ReturnUIPreb(removeUnit.GetComponent<Unit>()._SpawnIdx); // 차례 리스트 제외
-        //ReturnMonster(removeUnit.GetComponent<Monster>());
         _spawnedUnits.Remove(removeUnit);
     }
 

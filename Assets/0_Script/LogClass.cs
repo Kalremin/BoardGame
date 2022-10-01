@@ -9,7 +9,7 @@ public static class LogClass
 {
     static bool info = false;
     static bool warn = false;
-    static bool error = false;
+    static bool error = true;
 
     public static void LogInfo(object log)
     {

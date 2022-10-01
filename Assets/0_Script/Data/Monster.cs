@@ -51,7 +51,7 @@ public class Monster : Unit
     {
 
         _selectedObj.GetComponent<Unit>().Damaged(GetState(), (int)(_Attack * 1.5f));
-        EffectManager._instance.SpawnEffect(eEffect.Magic, _selectedObj.transform, new Vector3(0, 5, 3), 10);
+        EffectManager._instance.SpawnEffect(eEffect.Magic, _selectedObj.transform, new Vector3(0, 5, 0), 10);
         _selectedObj = null;
     }
 
@@ -74,7 +74,7 @@ public class Monster : Unit
 
     public override void DeathAniEndEvent()
     {
-        UnitTurn._instance.ReturnUIPreb(_SpawnIdx); // 차례 리스트 제외
+        
         SpawnUnitManager._instance.ReturnMonster(this);
         BattleManager._instance.ChangeState(eBattleState.FindUnitTurn);
         //Destroy(gameObject, 3);

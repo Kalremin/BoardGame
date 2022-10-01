@@ -24,6 +24,7 @@ public class RewardScript : MonoBehaviour
         {
             GameObject temp = Instantiate(_rewardBtn);
             temp.transform.SetParent(_rewardContent.transform);
+            temp.transform.localScale = Vector3.one;
             temp.GetComponent<RewardBtn>().SetKind(eReward.Gold);
         }
 
@@ -31,6 +32,7 @@ public class RewardScript : MonoBehaviour
         {
             GameObject temp = Instantiate(_rewardBtn);
             temp.transform.SetParent(_rewardContent.transform);
+            temp.transform.localScale = Vector3.one;
             temp.GetComponent<RewardBtn>().SetKind(eReward.Hunger);
         }
 
@@ -38,6 +40,7 @@ public class RewardScript : MonoBehaviour
         {
             GameObject temp = Instantiate(_rewardBtn);
             temp.transform.SetParent(_rewardContent.transform);
+            temp.transform.localScale = Vector3.one;
             temp.GetComponent<RewardBtn>().SetKind(eReward.Monster);
         }
     }
