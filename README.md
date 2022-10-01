@@ -6,3 +6,6 @@
 * 사용엔진 : Unity<br/>
 * 사용언어 : C#<br/>
 * 대상기기 : PC<br/>
+
+# 추가 패키지
+Delaunator C# : https://github.com/nol1fe/delaunator-sharp
