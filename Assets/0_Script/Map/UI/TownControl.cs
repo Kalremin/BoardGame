@@ -30,7 +30,6 @@ public class TownControl : MonoBehaviour
     }
     public void OnClickExitBtn()
     {
-        //_map.SetActive(true);
         MapManager._instance.MapActive(true);
         gameObject.SetActive(false);
     }

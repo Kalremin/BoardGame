@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class MenuActBtns : MonoBehaviour
 {
-    //public static MenuActBtns _instance = new MenuActBtns();
-
     [SerializeField]
     Button _attackBtn, _magicBtn, _summonBtn;
 

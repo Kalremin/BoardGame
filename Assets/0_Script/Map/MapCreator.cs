@@ -46,56 +46,14 @@ public class MapCreator : MonoBehaviour
 
         delaunator = new Delaunator(points.ToArray());
 
-
-
-        {
-            //delaunator.ForEachVoronoiEdge(edge =>
-            //{
-
-            //Vector3 tempVecP = new Vector3(Mathf.Round(edge.P.ToVector3().x), Mathf.Round(edge.P.ToVector3().y));
-            //Vector3 tempVecQ = new Vector3(Mathf.Round(edge.Q.ToVector3().x), Mathf.Round(edge.Q.ToVector3().y));
-
-            //if (posIcons.Contains(tempVecP))
-            //    return;
-
-            //posIcons.Add(tempVecP);
-
-
-            //MapPoint pointObj = Instantiate(_mapPointPrb, _pointContainer).GetComponent<MapPoint>();
-            //pointObj.transform.SetPositionAndRotation(tempVecP, Quaternion.identity);
-            //pointObj.GetComponent<SpriteRenderer>().sortingOrder = 2;
-            //LogClass.LogInfo(string.Format("{0} pos: {1}", pointObj.name, pointObj.transform.position));
-
-
-            //MapLine lineObj = Instantiate(_mapLinePrb, _lineContainer).GetComponent<MapLine>();
-            //lineObj.GetComponent<LineRenderer>().SetPositions(new Vector3[] { tempVecP, tempVecQ });
-            //lineObj.GetComponent<LineRenderer>().startWidth = .05f;
-            //lineObj.GetComponent<LineRenderer>().endWidth = .05f;
-            //lineObj.GetComponent<LineRenderer>().sortingOrder = 1;
-            //LogClass.LogInfo(string.Format("{0} {1}", edge.P.ToVector3(), edge.Q.ToVector3()));
-            //LogClass.LogInfo(string.Format("{0} pos: {1}, {2} / {3}, {4}", lineObj.name,
-            //    lineObj.GetComponent<LineRenderer>().GetPosition(0).x, lineObj.GetComponent<LineRenderer>().GetPosition(0).y,
-            //    lineObj.GetComponent<LineRenderer>().GetPosition(1).x, lineObj.GetComponent<LineRenderer>().GetPosition(1).y));
-
-            //pointObj.AddLine(lineObj);
-            //});
-        }
-
         // 포인트 생성
         delaunator.ForEachTriangleEdge(edge =>
         {
             Vector3 tempVecP = new Vector3(Mathf.Round(edge.P.ToVector3().x), Mathf.Round(edge.P.ToVector3().y));
             Vector3 tempVecQ = new Vector3(Mathf.Round(edge.Q.ToVector3().x), Mathf.Round(edge.Q.ToVector3().y));
-            edges.Add(new Vector3[] { tempVecP, tempVecQ }); // 선분 리스트에 추가
+            edges.Add(new Vector3[] { tempVecP, tempVecQ }); 
 
-            /*
-             필수 요소 : 업,  보스, 타운
-             준필수 요소 : 보물, 코인
-             부가 요소 : 배틀, 랜덤
-             예외 : 클리어,다운
-             */
-
-            if (mapPoints.Exists(vec => vec.transform.position == tempVecP)) // 중복 포인트 생성 방지
+            if (mapPoints.Exists(vec => vec.transform.position == tempVecP))
                 return;
 
             MapPoint point = Instantiate(_mapPointPrb, _pointContainer).GetComponent<MapPoint>();
@@ -124,8 +82,7 @@ public class MapCreator : MonoBehaviour
 
             foreach (var tempPoint in mapPoints)
             {
-                if ((tempPoint.transform.position.Equals(tempVec[0]) || tempPoint.transform.position.Equals(tempVec[1]))
-                    )//&& Vector3.Distance(tempVec[0],tempVec[1]) < Vector3.Distance(_lowerLeft.position,_topRight.position)/2)
+                if (tempPoint.transform.position.Equals(tempVec[0]) || tempPoint.transform.position.Equals(tempVec[1]))
                 {
                     if (tempPoint.ContainLine(lineObj))
                         continue;

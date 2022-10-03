@@ -11,19 +11,10 @@ public class GUI_PlayerHP : MonoBehaviour
     Slider _sliderHP;
 
     Unit _player = null;
-
-    //int maxHP;
     private void Awake()
     {
         _instance = this;
     }
-    // Start is called before the first frame update
-
-    private void Start()
-    {
-        //maxHP = PlayerData.Instance.GetMaxHealth();
-    }
-
 
     // Update is called once per frame
     void Update()
@@ -33,8 +24,6 @@ public class GUI_PlayerHP : MonoBehaviour
             _sliderHP.value = _player._Health;
         }
 
-        
-        
     }
 
     public void SetPlayer(Unit unit)

@@ -86,7 +86,6 @@ public class MapManager : MonoBehaviour
         MapBgObj.SetActive(val);
         if(StageIdx>= StageCount)
         {
-            ///  마무리
             MapControl._instance.SetLast();
             return;
         }

@@ -21,14 +21,12 @@ public class BoardManager : MonoBehaviour
     int _tileLength=10;
 
     Tile _playerTile;
-    Tile[,] tileIdxArrays; //List<Tile>[] tileIdxArrays; 
+    Tile[,] tileIdxArrays; 
     int size;
     Queue<int> resetListIdxTile;
     List<int> teamTilesIdx;
     List<int> aiEnemyTilesIdx;
 
-    //public void SetPlayerTile(Tile tile) => _playerTile = tile;
-    //public Tile GetPlayerTile() => _playerTile;
 
     public int TileLength => _tileLength;
     public Tile[,] GetTileIdxArrays => tileIdxArrays;
@@ -50,7 +48,6 @@ public class BoardManager : MonoBehaviour
     public void GenerateBoard(int length)
     {
         size = length;
-        //tileIdxArrays = new Tile[length, length];
         tileIdxArrays = new Tile[size, size];
         for (int i = 0; i < length; i++)
         {
@@ -101,7 +98,7 @@ public class BoardManager : MonoBehaviour
     public void MoveTile(Unit playUnit, eBattleType battleType)
     {
 
-        Tile tempTile = playUnit.transform.parent.GetComponent<Tile>();//FindTileByUnit(playUnit);
+        Tile tempTile = playUnit.transform.parent.GetComponent<Tile>();
         int moveCount = playUnit._Move;
         int count = 0;
 
@@ -193,7 +190,7 @@ public class BoardManager : MonoBehaviour
             {
                 for (int j = y-temp.MagicRange; j <= y+ temp.MagicRange; j++)
                 {
-                    if (ExistUnitInTile(i, j))//|| i == j)
+                    if (ExistUnitInTile(i, j))
                     {
                         HighlightTile(EnumList.eTileHighlightStatus.Magic, battleType, i, j);
                     }
@@ -260,10 +257,6 @@ public class BoardManager : MonoBehaviour
         
         return tileIdxArrays[x,y];
     }
-    //public void SetUnitInTile(int x, int y, Unit unit=null)
-    //{
-    //    tileIdxArrays[x, y].SetonUnit(unit);
-    //}
 
     // 타일 사용 가능 확인 / T: 유닛 존재, F: 유닛 비존재
     public bool ExistUnitInTile(int x, int y)
@@ -272,7 +265,7 @@ public class BoardManager : MonoBehaviour
             return false;
 
 
-        return tileIdxArrays[x,y].transform.childCount > 1; // 
+        return tileIdxArrays[x,y].transform.childCount > 1;
     }
 
     // 경계선 확인 / T: 범위 내, F: 범위 밖

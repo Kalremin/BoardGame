@@ -12,8 +12,8 @@ public class OptionScript : MonoBehaviour
 
     void Start()
     {
-        _background.value = OptionData.GetVolumeBGM();//SoundManager._instance.GetBgmVol();
-        _effect.value = OptionData.GetVolumeEffect();//SoundManager._instance.GetEffectVol();
+        _background.value = OptionData.GetVolumeBGM();
+        _effect.value = OptionData.GetVolumeEffect();
         _resolution.value = OptionData.GetResolution();
 
 

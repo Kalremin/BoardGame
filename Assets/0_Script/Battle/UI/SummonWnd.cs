@@ -7,7 +7,7 @@ public class SummonWnd : MonoBehaviour
     public static SummonWnd _instance;
 
     [SerializeField]
-    GameObject _monsterView, _btnMonster;//, _layoutBtn;
+    GameObject _monsterView, _btnMonster;
 
     [SerializeField]
     RectTransform _contentRect;
@@ -17,12 +17,6 @@ public class SummonWnd : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
 
@@ -45,7 +39,6 @@ public class SummonWnd : MonoBehaviour
 
         BattleManager._instance.SetOpenWnd(true);
         _contentRect.sizeDelta = new Vector2(_contentRect.sizeDelta.x, rectHeight * PlayerData._instance.PlayerMonsterList.Count);
-        //.height = rectHeight * PlayerData.Instance.PlayerMonsterList.Count;
 
         if (_monsterView.transform.childCount == 0)
         {
@@ -62,13 +55,5 @@ public class SummonWnd : MonoBehaviour
         }
     }
 
-
-
-    private void OnDisable()
-    {
-        Debug.Log("OnDisable");
-        // Editor 크래시
-        //while (_monsterView.transform.childCount > 0) Destroy(_monsterView.transform.GetChild(0));
-    }
 
 }

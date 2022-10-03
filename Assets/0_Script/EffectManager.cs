@@ -20,7 +20,6 @@ public class EffectManager : MonoBehaviour
     GameObject[] _effectObj;
 
     Queue<GameObject>[] _effectPooling;
-    // Start is called before the first frame update
     void Start()
     {
         _instance = this;

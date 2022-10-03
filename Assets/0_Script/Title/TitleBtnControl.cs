@@ -46,7 +46,7 @@ public class TitleBtnControl : MonoBehaviour
         if (state != eTitleState.None)
             return;
 
-        OptionObj = Instantiate(Resources.Load("OptionWnd") as GameObject, transform.parent);//.SetActive(true);
+        OptionObj = Instantiate(Resources.Load("OptionWnd") as GameObject, transform.parent);
         state = eTitleState.Option;
 
     }

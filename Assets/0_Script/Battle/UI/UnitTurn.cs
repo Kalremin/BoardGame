@@ -20,31 +20,22 @@ public class UnitTurn : MonoBehaviour
     // 유닛 차례 프리펩 순서 조정
     public void NextTurnUnitUI(List<GameObject> unitList)
     {
-        try
+        if (unitList.Count == 0)
+            return;
+
+        for (int i = 0; i < _enableUI.transform.childCount; i++)
         {
 
-
-            if (unitList.Count == 0)
-                return;
-
-            for (int i = 0; i < _enableUI.transform.childCount; i++)
+            foreach (Transform child in _enableUI.transform)
             {
-
-                foreach (Transform child in _enableUI.transform)
+                if (child.GetComponent<TurnPref>().GetIdx() == unitList[i].GetComponent<Unit>()._SpawnIdx)
                 {
-                    if (child.GetComponent<TurnPref>().GetIdx() == unitList[i].GetComponent<Unit>()._SpawnIdx)
-                    {
-                        child.GetComponent<TurnPref>().SetTurnTime(unitList[i].GetComponent<Unit>()._CurrentTurn);
-                        child.SetSiblingIndex(i);
-                        break;
-                    }
+                    child.GetComponent<TurnPref>().SetTurnTime(unitList[i].GetComponent<Unit>()._CurrentTurn);
+                    child.SetSiblingIndex(i);
+                    break;
                 }
-
             }
-        }
-        catch(System.Exception e)
-        {
-            LogClass.LogError(e.Message);
+
         }
     }
 

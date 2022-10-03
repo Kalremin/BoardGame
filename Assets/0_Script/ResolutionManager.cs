@@ -27,11 +27,6 @@ public class ResolutionManager : MonoBehaviour
         Screen.SetResolution(resWidth[OptionData.GetResolution()], resHeight[OptionData.GetResolution()], false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ChangeResolution(int value)
     {

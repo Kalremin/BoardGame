@@ -22,22 +22,20 @@ public static class OptionData
     public static void SetVolumeBGM(float volume)
     {
         PlayerPrefs.SetFloat(volumeBgmStr, volume);
-        //volumeBgm = volume;
     }
 
     public static float GetVolumeBGM()
     {
-        return PlayerPrefs.GetFloat(volumeBgmStr, 1f); //return volumeBgm;
+        return PlayerPrefs.GetFloat(volumeBgmStr, 1f);
     }
 
     public static void SetVolumeEffect(float volume)
     {
         PlayerPrefs.SetFloat(volumeEffectStr, volume);
-        //volumeEffect = volume;
     }
 
     public static float GetVolumeEffect()
     {
-        return PlayerPrefs.GetFloat(volumeEffectStr, 1f); //return volumeEffect;
+        return PlayerPrefs.GetFloat(volumeEffectStr, 1f);
     }
 }

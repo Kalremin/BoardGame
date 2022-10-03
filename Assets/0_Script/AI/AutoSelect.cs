@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//edit
 public static  class AutoSelect
 {
     static Summoner _player;
@@ -317,8 +316,6 @@ public static  class AutoSelect
 
             _targetTile = null;
 
-            //Debug.LogWarning(tempTile.transform.position);
-
         }
         return tempTile;
     }
@@ -334,7 +331,6 @@ public static  class AutoSelect
         return _player.GetComponentInParent<Tile>();
     }
 
-    ////public static bool CheckNullTargetTile => targetTile == null;
     public static Tile TargetTile => _targetTile;
 
     public static void ResetTargetTile() => _targetTile = null;

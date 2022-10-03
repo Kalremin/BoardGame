@@ -30,11 +30,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     AudioClip[] _effectSound, _backgroundSound;
 
-    //float _effectSoundVol = 1f,_backgroundSoundVol = 1f;
-
-    //public float GetEffectVol() => _effectSoundVol;
-    //public float GetBgmVol() => _backgroundSoundVol;
-
     private void Awake()
     {
         _instance = this;
@@ -77,7 +72,6 @@ public class SoundManager : MonoBehaviour
 
     public void ChangeMusicVolume(float volume)
     {
-        //_backgroundSoundVol = volume;
         OptionData.SetVolumeBGM(volume);
         _playerSound.volume = volume;
     }
@@ -85,22 +79,7 @@ public class SoundManager : MonoBehaviour
     public void ChangeEffectVolume(float volume)
     {
         OptionData.SetVolumeEffect(volume);
-        //_effectSoundVol = volume;
+        
     }
 
-    //public void ChangeVolume(bool bgm, float volume)
-    //{
-    //    if (bgm)
-    //    {
-    //        _playerSound.volume = volume;
-    //        _backgroundSoundVol = volume;
-    //    }
-    //    else
-    //    {
-    //        _effectSoundVol = volume;
-
-    //    }
-    //}
-
-    
 }

@@ -62,7 +62,7 @@ public class PlayerData : MonoBehaviour
         _hunger = hunger;
 
         AddMonster(_haveMonsters[UnityEngine.Random.Range(0,_haveMonsters.Length)]);
-        EnableMagic(EnumList.eMagicList.ATKUP);//(EnumList.eMagicList)UnityEngine.Random.Range(100, 106));
+        EnableMagic(EnumList.eMagicList.ATKUP);
         
     }
 
@@ -128,8 +128,6 @@ public class PlayerData : MonoBehaviour
         if (_hunger < hunger)
         {
             _hunger = 0;
-            //SetHealth(GetHealth() - 2);
-            
         }
         else
         {

@@ -79,10 +79,7 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
-        // 맵 씬에서 배틀 이벤트 진행시 배틀타입 변수 얻기
-        GenerateBattle(MapManager.readyBattleType);//임시
-        
-        //_directionWay.SetActive(false);
+        GenerateBattle(MapManager.readyBattleType);
     }
 
     private void Update()
@@ -234,13 +231,10 @@ public class BattleManager : MonoBehaviour
         else
         {
             
-            Tile tempTile //= AutoSelect.TargetTile;
-                = AutoSelect.SelectTileAttack(_playUnit);
+            Tile tempTile = AutoSelect.SelectTileAttack(_playUnit);
             
             if (tempTile == null )
-                //|| Vector3.Distance(_playUnit.transform.parent.position,tempTile.transform.position) > BoardManager._instance.TileLength * _playUnit.GetComponent<Monster>().MagicRange)
             {
-                
                 _currentState = eBattleState.ReadyWait;
                 AutoSelect.ResetTargetTile();
                 return;
@@ -279,9 +273,7 @@ public class BattleManager : MonoBehaviour
         
         _camPos.eulerAngles = _playUnit._PlayerTeam ? Vector3.zero : new Vector3(0,180,0);
         _camPos.position =
-            new Vector3(_playUnit.transform.position.x, 20 /// _playUnit.transform.localScale.y
-            , _playUnit.transform.position.z)
-            + (_playUnit._PlayerTeam ? defCamPos : -defCamPos);
+            new Vector3(_playUnit.transform.position.x, 20, _playUnit.transform.position.z) + (_playUnit._PlayerTeam ? defCamPos : -defCamPos);
 
         _currentState = eBattleState.SelectMove;
     }
@@ -395,7 +387,6 @@ public class BattleManager : MonoBehaviour
                     if (hit.transform.CompareTag("DirectionWay"))
                     {
                         string tempWay = hit.transform.parent.name;
-                        //_playUnit.transform.rotation = hit.transform.parent.rotation;//Quaternion.Euler(0,hit.transform.localRotation.eulerAngles.y, 0);
 
                         switch (tempWay[tempWay.Length - 1])
                         {
@@ -424,9 +415,7 @@ public class BattleManager : MonoBehaviour
                     return;
                 }
                 _playUnit.transform.SetParent( unitTile.transform);
-                //_camPos.SetParent(_playUnit.transform);
                 _playUnit.transform.localPosition = Vector3.zero;
-                //_camPos.SetParent(null);
 
                 GUIScript._instance.CloseWnd(EnumList.eUIWnd.MenuActBtns);
                 _currentState = eBattleState.HighLightUnit;
@@ -521,8 +510,6 @@ public class BattleManager : MonoBehaviour
                         BoardManager._instance.ResetListTile();
                         _playUnit.GetComponent<Unit>().SetWay(tile);
                         _playUnit.GetComponent<Summoner>().Summon(tile);
-                        //SpawnUnitManager._instance.SpawnMonster((Summoner)_playUnit, tile);
-                        
                         _currentState = eBattleState.ActAni;
                     }
 
@@ -595,13 +582,10 @@ public class BattleManager : MonoBehaviour
         else
         {
 
-            Tile tempTile //= AutoSelect.TargetTile;
-                = AutoSelect.SelectTileAttack(_playUnit);
+            Tile tempTile = AutoSelect.SelectTileAttack(_playUnit);
             
             if(tempTile == null )
-                //|| Vector3.Distance(_playUnit.transform.parent.position, tempTile.transform.position) > BoardManager._instance.TileLength * 1.1f)
             {
-                
                 _currentState = eBattleState.ReadyWait;
                 AutoSelect.ResetTargetTile();
                 return;
@@ -635,7 +619,7 @@ public class BattleManager : MonoBehaviour
     {
         float angle = _playUnit.transform.eulerAngles.y;
 
-        if ((angle >= 315 && angle <= 360) || (angle >= 0 && angle < 45))//if (angle >= -45 && angle < 45)//N
+        if ((angle >= 315 && angle <= 360) || (angle >= 0 && angle < 45))//N
             _playUnit.GetComponent<Unit>().SetWay(EnumList.eUnitWay.N);
 
         if (angle >= 45 && angle < 135)//E
@@ -684,7 +668,6 @@ public class BattleManager : MonoBehaviour
     public eBattleType BattleType => _battleType;
 
     public void SetDirectionWay(bool isActive) => _directionWay.SetActive(isActive);
-    // 빈 코드
     // 배틀 종료 
     public void EndBattle()
     {

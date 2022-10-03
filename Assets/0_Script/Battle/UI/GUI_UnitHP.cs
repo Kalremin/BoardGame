@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class GUI_UnitHP : MonoBehaviour
 {
-    //[SerializeField]
-    //Slider _unitUP;
-
     [SerializeField]
     GameObject _unitStatusObj;
 
@@ -43,11 +40,6 @@ public class GUI_UnitHP : MonoBehaviour
                     else
                         tempTransform.GetChild(i).GetChild(0).GetComponent<Text>().color = Color.white;
                 }
-                
-                //_unitUP.gameObject.SetActive(true);
-                //_unitUP.value = (float)tempUnit._Health / tempUnit._MaxHealth;
-
-
                 _unitStatusObj.SetActive(true);
                 _hpCircle.fillAmount = (float)((float)tempUnit._MaxHealth - tempUnit._Health) / tempUnit._MaxHealth;
                 
@@ -68,8 +60,6 @@ public class GUI_UnitHP : MonoBehaviour
             }
             else
             {
-                //_unitUP.gameObject.SetActive(false);
-
                 _unitStatusObj.SetActive(false);
             }
         }

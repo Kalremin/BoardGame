@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-
-    //Unit onUnit;
-
     int x, y;
     EnumList.eTileHighlightStatus _tileStatus = EnumList.eTileHighlightStatus.None;
     public void SetTilePosition(int x, int y) { this.x = x; this.y = y; }
@@ -30,10 +27,5 @@ public class Tile : MonoBehaviour
     public GameObject GetUnitObject() => transform.GetChild(1).gameObject;
 
     public bool CheckUnitObject() => transform.childCount > 1;
-
-    //public void SetonUnit(Unit unit) => onUnit = unit;
-    //public Unit GetonUnit() => onUnit;
-    //public void resetOnUnit() => onUnit = null;
-
 
 }

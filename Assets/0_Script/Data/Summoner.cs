@@ -75,7 +75,6 @@ public class Summoner : Unit
     public override void Dead()
     {
         base.Dead();
-        //BattleManager._instance.ChangeState(eBattleState.BattleEnd);
     }
 
     public override void DeathAniEndEvent()

@@ -15,8 +15,8 @@ using UnityEngine;
 
 public class Monster : Unit
 {
-    [SerializeField] EnumList.eKindMonster _kind;   // 몬스터 종류
-    [SerializeField] EnumList.eMagicList _magic; // 몬스터 마법의 한 종류
+    [SerializeField] EnumList.eKindMonster _kind; 
+    [SerializeField] EnumList.eMagicList _magic; 
 
     public EnumList.eKindMonster _Kind => _kind;
     [SerializeField]
@@ -67,9 +67,6 @@ public class Monster : Unit
         base.Dead();
         if(!_PlayerTeam)
             SpawnUnitManager._instance.MinusEnemyMonsterCount();
-        //transform.SetParent(SpawnUnitManager._instance.transform);
-        //BattleManager._instance.ChangeState(eBattleState.FindUnitTurn);
-        //Destroy(gameObject, 3);
     }
 
     public override void DeathAniEndEvent()
@@ -77,8 +74,6 @@ public class Monster : Unit
         
         SpawnUnitManager._instance.ReturnMonster(this);
         BattleManager._instance.ChangeState(eBattleState.FindUnitTurn);
-        //Destroy(gameObject, 3);
-
     }
 
 

@@ -35,19 +35,19 @@ public class Unit : MonoBehaviour
 
     int _spawnIdx=-1;
     bool[] _state = new bool[6];
-    protected int _currentTurn; // 유닛이 행동할 턴
+    protected int _currentTurn; 
     protected GameObject _selectedObj;
     
     public bool _PlayerTeam { get { return _playerTeam; }set { _playerTeam = value; } }
-    public string _Name { get { return _name; } }   // 이름
-    public int _Health { get { return _health; } }  //체력
+    public string _Name { get { return _name; } }  
+    public int _Health { get { return _health; } } 
 
     public int _MaxHealth { get { return _maxHealth; } }
-    public int _Attack { get { return _attack; } }  //공격
-    public int _Defense { get { return _defense; } }    //방어
-    public int _Speed { get { return _speed; } }    // 속도 -> 높으면 빨리 돌아온다.
+    public int _Attack { get { return _attack; } }
+    public int _Defense { get { return _defense; } }  
+    public int _Speed { get { return _speed; } }    // 속도 -> 높으면 자신의 차례가 빨리 돌아온다.
     public int _Move { get { return _move; } }  // 움직일 거리 -> 자신의 차례에서 움직일 수 있는 거리
-    public int _Grade { get { return _grade; } }    // 등급
+    public int _Grade { get { return _grade; } }
     
     public int _SpawnIdx { get { return _spawnIdx; } set { _spawnIdx = value; } }
 
@@ -86,7 +86,7 @@ public class Unit : MonoBehaviour
     }
     public virtual void Dead()
     {
-        UnitTurn._instance.ReturnUIPreb(_SpawnIdx); // 차례 리스트 제외
+        UnitTurn._instance.ReturnUIPreb(_SpawnIdx);
         _animator.SetBool(EnumList.eAnimatorParameter.Bool_Death.ToString(), true);
 
         SpawnUnitManager._instance.RemoveUnitInList(gameObject);
@@ -112,13 +112,12 @@ public class Unit : MonoBehaviour
         Vector3 tempVec = opponentTile.transform.position - unitTile.transform.position;
 
         if(Vector3.Distance(unitTile.transform.position, opponentTile.transform.position) > BoardManager._instance.TileLength)
-        { // 2칸 차이 이상
-
+        { 
             transform.LookAt(opponentTile.transform);
 
             float angle = transform.eulerAngles.y;
 
-            if ((angle >= 315 && angle <= 360) || (angle >= 0 && angle < 45))//if (angle >= -45 && angle < 45)//N
+            if ((angle >= 315 && angle <= 360) || (angle >= 0 && angle < 45))//N
                 SetWay(EnumList.eUnitWay.N);
 
             if (angle >= 45 && angle < 135)//E
@@ -132,7 +131,7 @@ public class Unit : MonoBehaviour
 
         }
         else
-        { // 1칸 차이
+        { 
             if (tempVec.x == 0)
             {
                 if (tempVec.z > 0)
@@ -246,7 +245,6 @@ public class Unit : MonoBehaviour
     public virtual void DeathAniEndEvent()
     {
         EffectManager._instance.SpawnEffect(eEffect.Dead, transform, Vector3.zero, 10);
-        //BattleManager._instance.ChangeState(eBattleState.BattleEnd);
     }
 
     public void ResetUnit()

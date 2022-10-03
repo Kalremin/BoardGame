@@ -20,8 +20,6 @@ public class SummonerMagicWnd : MonoBehaviour
     5: spdDOWN
      */
 
-
-
     private void OnEnable()
     {
         BattleManager._instance.SetOpenWnd(true);

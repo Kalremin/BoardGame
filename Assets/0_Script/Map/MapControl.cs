@@ -19,15 +19,8 @@ public class MapControl : MonoBehaviour
     [SerializeField] GameObject _townObj;
     [SerializeField] Image _lastImg;
 
-
-    ///
-    
     int defaultHunger = 15;
     int defaultRegeneration = 2;
-    //[SerializeField] GameObject MapBgObj;
-
-    ///
-
     private void Awake()
     {
         _instance = this;
@@ -139,7 +132,6 @@ public class MapControl : MonoBehaviour
         int randomInt = Random.Range(0, 100);
         if (randomInt < 5)
         {
-            // 전투 이벤트
             BattlePoint();
             return;
         }
@@ -152,7 +144,6 @@ public class MapControl : MonoBehaviour
 
         if (randomInt >= 90)
         {
-            // 골드 획득 이벤트
             GoldPoint();
             return;
         }
@@ -168,7 +159,6 @@ public class MapControl : MonoBehaviour
         else
         {
             GetHunger(Random.Range(30, 51));
-            //GetTreasure();
         }
 
 
@@ -179,12 +169,10 @@ public class MapControl : MonoBehaviour
         int randomInt = Random.Range(0, 100);
         if (randomInt < 5)
         {
-            // 전투 이벤트
-
+            BattlePoint();
         }
         else if (randomInt >= 5 && randomInt < 10)
         {
-            // 골드 이벤트
             GetGolds(Random.Range(10, 100));
         }
     }
@@ -305,7 +293,6 @@ public class MapControl : MonoBehaviour
                 break;
         }
 
-        //text.gameObject.SetActive(true);
         effectText.GetComponent<RectTransform>().transform.localPosition = Vector3.zero;
 
         if (positive)

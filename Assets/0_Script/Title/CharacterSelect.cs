@@ -14,7 +14,6 @@ public class CharacterSelect : MonoBehaviour
 
     Summoner summoner;
 
-    // Start is called before the first frame update
     void Start()
     {
         _summonerImg.sprite = summonerSprite;
