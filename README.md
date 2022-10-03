@@ -43,7 +43,7 @@
   * 플레이어가 패배하면 타이틀 화면으로 전환
   
 # 동영상 링크
-준비중
+https://youtu.be/ZcyC6yjrMPw
 
 # 추가 패키지
 Delaunator C# : https://github.com/nol1fe/delaunator-sharp
