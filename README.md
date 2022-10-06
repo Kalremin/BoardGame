@@ -8,8 +8,10 @@ Mega Crit Games사의 게임 ‘Slay the Spire’ 와 니혼 팔콤사의 게임
 * 개발언어 : C#<br/>
 * 플랫폼 : PC<br/>
   
-# 플레이 동영상 링크
-[![Video Label](http://img.youtube.com/vi/ZcyC6yjrMPw/0.jpg)](https://youtu.be/ZcyC6yjrMPw)
+# 영상 및 설명문서
+* 영상: https://youtu.be/ZcyC6yjrMPw
+* 설명문서: https://docs.google.com/document/d/1snJFhFPqzk9bPdNt3p4cVhsB8F0jEu3t/edit?usp=sharing&ouid=103071182934731723349&rtpof=true&sd=true
+
 
 
 
