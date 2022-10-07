@@ -42,9 +42,9 @@ public enum eBattleState
 }
 
 
-public class BattleManager : MonoBehaviour
+public class BattleManager : Singleton<BattleManager>
 {
-    public static BattleManager _instance;
+    //public static BattleManager _instance;
 
     public int _stage = 1;  // 맵 씬에서 진행중인 스테이지 변수 얻기
 
@@ -72,10 +72,10 @@ public class BattleManager : MonoBehaviour
     public bool GetIsBuff() => isBuff;
 
 
-    private void Awake()
-    {
-        _instance = this;
-    }
+    //private void Awake()
+    //{
+    //    //_instance = this;
+    //}
 
     private void Start()
     {
@@ -312,9 +312,7 @@ public class BattleManager : MonoBehaviour
                 }
 
                 _camPos.position =
-                    new Vector3(_playUnit.transform.position.x, 20 / _playUnit.transform.localScale.y, _playUnit.transform.position.z)
-                    + (_playUnit._PlayerTeam ? defCamPos : -defCamPos);
-
+                    new Vector3(_playUnit.transform.position.x, 20, _playUnit.transform.position.z) + (_playUnit._PlayerTeam ? defCamPos : -defCamPos);
             }
         }
         else

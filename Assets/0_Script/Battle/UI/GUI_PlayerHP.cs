@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GUI_PlayerHP : MonoBehaviour
+// 배틀 씬의 플레이어 체력 표시
+public class GUI_PlayerHP : Singleton<GUI_PlayerHP>
 {
-    public static GUI_PlayerHP _instance;
-
+    
     [SerializeField]
     Slider _sliderHP;
 
     Unit _player = null;
-    private void Awake()
-    {
-        _instance = this;
-    }
-
+  
     // Update is called once per frame
     void Update()
     {

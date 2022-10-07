@@ -12,17 +12,22 @@ public enum eEffect
     Debuff
 }
 
-public class EffectManager : MonoBehaviour
+public class EffectManager : Singleton<EffectManager>
 {
-    public static EffectManager _instance;
+    //public static EffectManager _instance;
 
     [SerializeField]
     GameObject[] _effectObj;
 
     Queue<GameObject>[] _effectPooling;
+
+    //private void Awake()
+    //{
+    //    //_instance = this;
+    //}
     void Start()
     {
-        _instance = this;
+        
         _effectPooling = new Queue<GameObject>[_effectObj.Length];
         for(int i = 0; i < _effectPooling.Length; i++)
             _effectPooling[i] = new Queue<GameObject>();

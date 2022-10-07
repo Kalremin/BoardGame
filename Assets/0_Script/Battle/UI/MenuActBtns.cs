@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 유닛의 행동 버튼
 public class MenuActBtns : MonoBehaviour
 {
     [SerializeField]
@@ -27,19 +28,16 @@ public class MenuActBtns : MonoBehaviour
         }
     }
 
-    public void OpenWnd(Vector3 pos)
-    {
-        gameObject.SetActive(true);
-        GetComponent<RectTransform>().position = pos + (Vector3.right + Vector3.down) * 30 ;
-    }
 
-
+    // 대기 버튼
     public void OnClickBtnWait()
     {
         BattleManager._instance.SetDirectionWay(false);
         BattleManager._instance.ChangeState(eBattleState.ReadyWait);
         gameObject.SetActive(false);
     }
+
+    // 공격 버튼
     public void OnClickBtnAttack()
     {
         BattleManager._instance.SetDirectionWay(false);
@@ -48,6 +46,7 @@ public class MenuActBtns : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    // 마법 버튼
     public void OnClickBtnMagic()
     {
         BattleManager._instance.SetDirectionWay(false);
@@ -65,6 +64,7 @@ public class MenuActBtns : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    // 소환 버튼
     public void OnClickBtnSummon()
     {
         BattleManager._instance.SetDirectionWay(false);

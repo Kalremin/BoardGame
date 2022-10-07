@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 지도 씬의 여관 UI
 public class InnControl : MonoBehaviour
 {
 
-    [SerializeField] Button _rest, _hunger;
+    [SerializeField] Button _restButton, _supplyButton;
     [SerializeField] GameObject _restDesc, _hungerDesc, _exitDesc;
+
+    private void OnEnable()
+    {
+        if (ShopStuff._instance.UsedRestStage[MapManager._instance.StageIdx])
+            _restButton.interactable = false;
+        else
+            _restButton.interactable = true;
+    }
 
     public void OnClickRestBtn()
     {
         MapControl._instance.HealHP(50);
         MapControl._instance.UseGolds(30);
-        _rest.interactable = false;
+        _restButton.interactable = false;
         ShopStuff._instance.UsedRestStage[MapManager._instance.StageIdx] = true;
     }
 
@@ -27,7 +36,7 @@ public class InnControl : MonoBehaviour
 
             if (PlayerData._instance.GetGold() < 15)
             {
-                _hunger.interactable = false;
+                _supplyButton.interactable = false;
             }
 
         }
@@ -40,11 +49,11 @@ public class InnControl : MonoBehaviour
         _exitDesc.SetActive(false);
 
         if (ShopStuff._instance.UsedRestStage[MapManager._instance.StageIdx])
-            _rest.interactable = false;
+            _restButton.interactable = false;
 
         if (PlayerData._instance.GetGold() < 15)
         {
-            _hunger.interactable = false;
+            _supplyButton.interactable = false;
         }
 
         gameObject.SetActive(false);

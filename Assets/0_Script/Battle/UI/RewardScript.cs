@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class RewardScript : MonoBehaviour
 {
     [SerializeField]
     GameObject _rewardBG, _rewardContent, _rewardBtn;
-
-    
 
     private void OnEnable()
     {

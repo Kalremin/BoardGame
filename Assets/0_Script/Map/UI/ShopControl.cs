@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 지도 씬의 상점 UI
 public class ShopControl : MonoBehaviour
 {
     [SerializeField] Button[] stuffsBtn;
-    [SerializeField] MapControl control;
 
     // Start is called before the first frame update
-    void Start()
+    
+    private void OnEnable()
     {
         ResetBtn();
     }
@@ -33,7 +34,6 @@ public class ShopControl : MonoBehaviour
                 stuffsBtn[i].GetComponentInChildren<Text>().text += "\n[골드 부족]";
                 stuffsBtn[i].interactable = false;
             }
-
 
         }
 

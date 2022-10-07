@@ -4,10 +4,10 @@ using System.Text;
 using System.Linq;
 using UnityEngine;
 
-public class SpawnUnitManager : MonoBehaviour
+public class SpawnUnitManager : Singleton<SpawnUnitManager>
 {
     // 싱클톤
-    public static SpawnUnitManager _instance;
+    //public static SpawnUnitManager _instance;
 
     Queue<Monster>[] monsterPooling = new Queue<Monster>[(int)EnumList.eKindMonster.COUNT];
 
@@ -31,7 +31,24 @@ public class SpawnUnitManager : MonoBehaviour
 
     public int EnemyMonsterCount => _enemyMonsterCount;
 
+    //protected void Awake()
+    //{
+    //    //_instance = this;
+    //    //summonersCheck = new bool[_summoners.Length];
+    //    //for (int i = 0; i < monsterPooling.Length; i++)
+    //    //{
+    //    //    monsterPooling[i] = new Queue<Monster>();
+    //    //}
+    //}
 
+    private void Start()
+    {
+        summonersCheck = new bool[_summoners.Length];
+        for (int i = 0; i < monsterPooling.Length; i++)
+        {
+            monsterPooling[i] = new Queue<Monster>();
+        }
+    }
 
     Monster GetMonster(EnumList.eKindMonster kindMonster)
     {
@@ -58,15 +75,7 @@ public class SpawnUnitManager : MonoBehaviour
 
     }
 
-    private void Awake()
-    {
-        _instance = this;
-        summonersCheck = new bool[_summoners.Length];
-        for(int i = 0; i < monsterPooling.Length; i++)
-        {
-            monsterPooling[i] = new Queue<Monster>();
-        }
-    }
+    
 
     
 

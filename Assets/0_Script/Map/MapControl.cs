@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MapControl : MonoBehaviour
+public class MapControl : Singleton<MapControl>
 {
-    public static MapControl _instance;
+    //public static MapControl _instance;
 
     public enum eText
     {
@@ -21,10 +21,10 @@ public class MapControl : MonoBehaviour
 
     int defaultHunger = 15;
     int defaultRegeneration = 2;
-    private void Awake()
-    {
-        _instance = this;
-    }
+    //private void Awake()
+    //{
+    //    //_instance = this;
+    //}
 
     // Start is called before the first frame update
     void Start()

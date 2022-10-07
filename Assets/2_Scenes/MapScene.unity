@@ -1040,7 +1040,7 @@ GameObject:
   - component: {fileID: 507472652}
   - component: {fileID: 507472655}
   m_Layer: 0
-  m_Name: Button
+  m_Name: RestButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1436,7 +1436,7 @@ GameObject:
   - component: {fileID: 587412715}
   - component: {fileID: 587412716}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: InnButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3234,7 +3234,7 @@ GameObject:
   - component: {fileID: 980455468}
   - component: {fileID: 980455471}
   m_Layer: 0
-  m_Name: Button (2)
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3602,7 +3602,7 @@ GameObject:
   - component: {fileID: 1095686056}
   - component: {fileID: 1095686059}
   m_Layer: 0
-  m_Name: Button (1)
+  m_Name: SupplyButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4312,7 +4312,6 @@ MonoBehaviour:
   - {fileID: 1993443176}
   - {fileID: 1552976543}
   - {fileID: 1535646507}
-  control: {fileID: 0}
 --- !u!1 &1419915428
 GameObject:
   m_ObjectHideFlags: 0
@@ -4351,7 +4350,6 @@ MonoBehaviour:
   - {fileID: 2173943234966468753, guid: 137ce6da72e463f45a491ca4c164c463, type: 3}
   - {fileID: 6713033994178527138, guid: 8ee8e3890a7b2d04788bdcac3ee278d0, type: 3}
   - {fileID: 232900358454974817, guid: 0f2d6aa925655fa46b62bb8bbaf847f9, type: 3}
-  _town: {fileID: 0}
 --- !u!4 &1419915430
 Transform:
   m_ObjectHideFlags: 0
@@ -4431,7 +4429,7 @@ GameObject:
   - component: {fileID: 1465152172}
   - component: {fileID: 1465152173}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: SellItemsObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4768,7 +4766,7 @@ GameObject:
   - component: {fileID: 1535646508}
   - component: {fileID: 1535646507}
   m_Layer: 0
-  m_Name: Button (3)
+  m_Name: SellMagicButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4928,7 +4926,7 @@ GameObject:
   - component: {fileID: 1552976544}
   - component: {fileID: 1552976543}
   m_Layer: 0
-  m_Name: Button (2)
+  m_Name: SellMonsterButton (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5405,8 +5403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6714307c3f0f40147b18d06415cd9785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rest: {fileID: 507472652}
-  _hunger: {fileID: 1095686056}
+  _restButton: {fileID: 507472652}
+  _supplyButton: {fileID: 1095686056}
   _restDesc: {fileID: 283141905}
   _hungerDesc: {fileID: 928550575}
   _exitDesc: {fileID: 1680912700}
@@ -5423,7 +5421,7 @@ GameObject:
   - component: {fileID: 1705098348}
   - component: {fileID: 1705098347}
   m_Layer: 0
-  m_Name: Button
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5840,7 +5838,7 @@ GameObject:
   - component: {fileID: 1742562857}
   - component: {fileID: 1742562856}
   m_Layer: 0
-  m_Name: Button
+  m_Name: SellMonsterButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6304,7 +6302,7 @@ GameObject:
   - component: {fileID: 1815621932}
   - component: {fileID: 1815621933}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ButtonsObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7140,7 +7138,7 @@ GameObject:
   - component: {fileID: 1993443177}
   - component: {fileID: 1993443176}
   m_Layer: 0
-  m_Name: Button (1)
+  m_Name: SellMonsterButton (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

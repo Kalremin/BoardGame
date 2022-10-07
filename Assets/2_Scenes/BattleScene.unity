@@ -2376,7 +2376,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 156400520}
   m_HandleRect: {fileID: 156400519}
   m_Direction: 2
-  m_Value: 0
+  m_Value: -0.00000008871389
   m_Size: 0.57
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2606,7 +2606,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: -0.08439064, y: -0.036342144, z: 0.039000273, w: 0.10398376}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4278,7 +4278,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1012637327}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49cd5f3c90bd67146a49e50e68d57458, type: 3}
+  m_Script: {fileID: 11500000, guid: 28559cc6af94099458de07145f52e599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _menuActBtns: {fileID: 593518156}

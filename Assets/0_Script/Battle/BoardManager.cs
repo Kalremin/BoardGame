@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BoardManager : MonoBehaviour
+public class BoardManager : Singleton<BoardManager>
 {
     // 싱글톤
-    public static BoardManager _instance;
+    //public static BoardManager _instance;
 
     
     // 프리펩
@@ -35,9 +35,16 @@ public class BoardManager : MonoBehaviour
     public List<int> GetAiEnemyTilesIdx => aiEnemyTilesIdx;
 
 
-    private void Awake()
+    //private void Awake()
+    //{
+    //    //_instance = this;
+    //    resetListIdxTile = new Queue<int>();
+    //    teamTilesIdx = new List<int>();
+    //    aiEnemyTilesIdx = new List<int>();
+    //}
+
+    private void Start()
     {
-        _instance = this;
         resetListIdxTile = new Queue<int>();
         teamTilesIdx = new List<int>();
         aiEnemyTilesIdx = new List<int>();

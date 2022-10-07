@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+public class PlayerData : Singleton<PlayerData>
 {
-    public static PlayerData _instance;
+    //public static PlayerData _instance;
 
     [SerializeField] Monster[] _haveMonsters = new Monster[3];
 
@@ -27,9 +27,10 @@ public class PlayerData : MonoBehaviour
     List<Monster> _monsters = new List<Monster>();
     bool[] _summonerMagics = new bool[6];
 
-    private void Awake()
+    private new void Awake()
     {
-        _instance = this;
+        //_instance = this;
+        base.Awake();
         DontDestroyOnLoad(gameObject);
     }
 

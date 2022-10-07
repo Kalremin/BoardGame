@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class GUIScript : MonoBehaviour
+// 배틀씬의 UI 스크립트
+public class GUIScript : Singleton<GUIScript>
 {
-    public static GUIScript _instance;
 
     [SerializeField]
     GameObject _menuActBtns, _summonWnd, _magicWnd, _resultWnd;
@@ -14,11 +13,7 @@ public class GUIScript : MonoBehaviour
     GameObject _pauseWnd;
 
     public bool ExistPauseWnd() => _pauseWnd != null;
-    private void Awake()
-    {
-        _instance = this;
-    }
-
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && _pauseWnd == null)
@@ -27,6 +22,7 @@ public class GUIScript : MonoBehaviour
         }
     }
 
+    // UI창 활성화
     public void OpenWnd(EnumList.eUIWnd uIWnd)
     {
         switch (uIWnd)
@@ -73,6 +69,7 @@ public class GUIScript : MonoBehaviour
         }
     }
 
+    // UI창 비활성화
     public void CloseWnd(EnumList.eUIWnd uIWnd)
     {
         switch (uIWnd)

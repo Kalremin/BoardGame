@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+// 몬스터 등급 색깔
 struct MonsterColor
 {
     public static Color Normal => Color.gray;
@@ -11,6 +11,7 @@ struct MonsterColor
     public static Color Unique => Color.red;
 }
 
+// 소환 UI창의 몬스터 버튼
 public class MonsterSummonBtn : MonoBehaviour
 {
 
@@ -26,6 +27,7 @@ public class MonsterSummonBtn : MonoBehaviour
     Sprite[] _monsterSprite = new Sprite[8];
     Image bg;
 
+    // 몬스터 정보 입력
     public void SetMonster(Monster monster)
     {
         bg = transform.GetComponent<Image>();
@@ -55,7 +57,7 @@ public class MonsterSummonBtn : MonoBehaviour
 
     }
 
-
+    // 클릭 이벤트 (소환)
     public void OnClickBtn()
     {
 

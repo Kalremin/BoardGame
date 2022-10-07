@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+// 보상 종류
 public enum eReward
 {
     Gold,
     Hunger,
     Monster
 }
+
+// 보상 UI창의 보상 버튼
 public class RewardBtn : MonoBehaviour
 {
     eReward _rewardKind;
@@ -25,6 +27,8 @@ public class RewardBtn : MonoBehaviour
 
     int rewardVal = 0;
     Monster rewardMonster;
+
+    // 보상 정보 입력
     public void SetKind(eReward kind)
     {
         _rewardKind = kind;
@@ -77,6 +81,7 @@ public class RewardBtn : MonoBehaviour
         }
     }
 
+    // 클릭 이벤트 (보상)
     public void OnClick()
     {
         switch (_rewardKind)

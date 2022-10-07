@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 배틀의 패배스크립트
 public class DefeatScript : MonoBehaviour
 {
     private void OnEnable()

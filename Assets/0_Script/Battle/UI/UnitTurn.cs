@@ -4,19 +4,19 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitTurn : MonoBehaviour
+public class UnitTurn : Singleton<UnitTurn>
 {
-    public static UnitTurn _instance;
+    //public static UnitTurn _instance;
 
     [SerializeField] GameObject _enableUI, _disableUI;
     [SerializeField] GameObject _imagePref;
 
     Queue<GameObject> _turnObjPooling = new Queue<GameObject>();
 
-    private void Awake()
-    {
-        _instance = this;
-    }
+    //private void Awake()
+    //{
+    //    //_instance = this;
+    //}
     // 유닛 차례 프리펩 순서 조정
     public void NextTurnUnitUI(List<GameObject> unitList)
     {

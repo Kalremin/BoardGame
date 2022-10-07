@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneControlManager : MonoBehaviour
+public class SceneControlManager : Singleton<SceneControlManager>
 {
-    public static SceneControlManager _instance;
+    //public static SceneControlManager _instance;
 
     EnumList.eScence _sceneState;
 
-    private void Awake()
+    protected new void Awake()
     {
-        _instance = this;
+        //_instance = this;
+        base.Awake();
         DontDestroyOnLoad(gameObject);
     }
 

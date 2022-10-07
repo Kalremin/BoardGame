@@ -4,33 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-
-public class MapManager : MonoBehaviour
+// 지도 씬의 스테이지 지도 관리
+public class MapManager : NoOverlapSingleton<MapManager>
 {
-    public static MapManager _instance;
     public static eBattleType readyBattleType;
     [SerializeField] GameObject MapBgObj;
     [SerializeField] MapCreator[] _stages;
 
     MapPoint currentPoint;
     public int StageIdx { get; set; } = 0;
+    public int StageCount => _stages.Length;
 
-    private void Awake()
-    {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        _instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
         OpenStage(true);
     }
+
 
     public bool ClickPoint(MapPoint movePoint, out eMapPointState pointState)
     {
@@ -65,9 +54,9 @@ public class MapManager : MonoBehaviour
         return true;
     }
 
+    // 플레이어 현재 위치 포인트 설정
     void SetCurrentPoint(MapPoint point)
     {
-
 
         if (currentPoint != null)
         {
@@ -81,6 +70,7 @@ public class MapManager : MonoBehaviour
 
     }
 
+    // 현재 스테이지 지도 설정
     public void MapActive(bool val)
     {
         MapBgObj.SetActive(val);
@@ -92,6 +82,7 @@ public class MapManager : MonoBehaviour
         _stages[StageIdx].gameObject.SetActive(val);
     }
 
+    // 다음 스테이지 지도 설정
     public void OpenStage(bool NextMap)
     {
         if (StageIdx < 0)
@@ -125,9 +116,4 @@ public class MapManager : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-    public int StageCount => _stages.Length;
-
-    
-
 }

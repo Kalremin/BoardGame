@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 적 유닛의 타일 자동 선택
 public static  class AutoSelect
 {
     static Summoner _player;
     static Tile _targetTile = null;
     static List<Tile> attackTileList = new List<Tile>();
 
+    // 공격 타일 자동 선택
     public static bool CheckTileAttackUnit(Unit unit)
     {
         Tile tile = unit.GetComponentInParent<Tile>();
@@ -41,6 +43,7 @@ public static  class AutoSelect
         return false;
     }
 
+    // 유닛의 마법 공격 여부
     public static bool CheckTileMagicAttackUnit(Monster monster)
     {
         Tile tile = monster.GetComponentInParent<Tile>();
@@ -82,6 +85,7 @@ public static  class AutoSelect
         return false;
     }
 
+    // 공격 대상 타일 선택
     public static Tile SelectTileAttack(Unit unit)
     {
         if (attackTileList == null || attackTileList.Count == 0)
@@ -92,7 +96,7 @@ public static  class AutoSelect
     }
 
     
-
+    // 적 소환사의 소환할 타일 선택
     public static Tile SelectTileSummon(Unit unit)
     {
         Tile tempTile = null;
@@ -151,6 +155,7 @@ public static  class AutoSelect
 
     }
 
+    // 이동할 타일 선택
     public static Tile SelectTileMove(Unit unit)
     {
         if (unit.CompareTag("Summoner"))
@@ -161,6 +166,7 @@ public static  class AutoSelect
         throw new System.Exception("No Tag Object");
     }
 
+    // 적 소환사의 이동 타일 찾기
     static Tile FindTileMoveSummoner(Vector3 summonerPos)
     {
         Tile tempTile = null;
@@ -168,9 +174,9 @@ public static  class AutoSelect
         int size = (int)BattleManager._instance.BattleType;
         float tempDist = 0;
 
-
-        if (BoardManager._instance.GetAiEnemyTilesIdx.Count > 0)
-        {
+        // 플레이어의 유닛 수 확인
+        if (BoardManager._instance.GetAiEnemyTilesIdx.Count > 0) 
+        {   
             BoardManager._instance.ResetListTile();
 
             for (int i = 0; i < BoardManager._instance.GetAiEnemyTilesIdx.Count; i++)
@@ -238,6 +244,7 @@ public static  class AutoSelect
         return tempTile;
     }
 
+    // 적 몬스터의 이동 타일 찾기
     static Tile FindTileMoveMonster(Vector3 monsterPos)
     {
         Tile tempTile = null;
@@ -245,7 +252,7 @@ public static  class AutoSelect
         int size = (int)BattleManager._instance.BattleType;
         float tempDist = float.MaxValue;
 
-
+        // 플레이어의 유닛 수 확인
         if (BoardManager._instance.GetAiEnemyTilesIdx.Count > 0)
         {
             for (int i = 0; i < BoardManager._instance.GetAiEnemyTilesIdx.Count; i++)
@@ -320,16 +327,11 @@ public static  class AutoSelect
         return tempTile;
     }
 
+    // 플레이어의 소환사 설정
+    public static void SetPlayerUnit(Summoner player) => _player = player;
 
-    public static void SetPlayerUnit(Summoner player)
-    {
-        _player = player;
-    }
-
-    public static Tile GetPlayerUnitTile()
-    {
-        return _player.GetComponentInParent<Tile>();
-    }
+    // 플레이어의 소환사 타일 전달
+    public static Tile GetPlayerUnitTile() => _player.GetComponentInParent<Tile>();
 
     public static Tile TargetTile => _targetTile;
 

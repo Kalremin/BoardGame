@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SummonWnd : MonoBehaviour
+public class SummonWnd : Singleton<SummonWnd>
 {
-    public static SummonWnd _instance;
+    //public static SummonWnd _instance;
 
     [SerializeField]
     GameObject _monsterView, _btnMonster;
@@ -14,10 +14,10 @@ public class SummonWnd : MonoBehaviour
 
     int rectHeight = 600;
 
-    private void Awake()
-    {
-        _instance = this;
-    }
+    //private void Awake()
+    //{
+    //    //_instance = this;
+    //}
 
 
     // Update is called once per frame

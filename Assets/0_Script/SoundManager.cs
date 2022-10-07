@@ -21,18 +21,19 @@ public enum eBackgroundSound
     Defeat
 }
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
-    public static SoundManager _instance;
+    //public static SoundManager _instance;
 
     [SerializeField] 
     AudioSource _playerSound;
     [SerializeField]
     AudioClip[] _effectSound, _backgroundSound;
 
-    private void Awake()
+    private new void Awake()
     {
-        _instance = this;
+        //_instance = this;
+        base.Awake();
         DontDestroyOnLoad(gameObject);
     }
 

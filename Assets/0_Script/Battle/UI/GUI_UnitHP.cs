@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 배틀 씬의 유닛 체력 표시
 public class GUI_UnitHP : MonoBehaviour
 {
     [SerializeField]
@@ -18,6 +19,7 @@ public class GUI_UnitHP : MonoBehaviour
     }
 
     // Update is called once per frame
+    // 마우스 포인터로 유닛의 체력 UI 활성화 설정
     void Update()
     {
         if (GUIScript._instance.ExistPauseWnd())

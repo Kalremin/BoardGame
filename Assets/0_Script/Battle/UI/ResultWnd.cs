@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 배틀 씬의 결과 UI창
 public class ResultWnd : MonoBehaviour
 {
     [SerializeField]
