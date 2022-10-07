@@ -4,11 +4,9 @@ using System.Text;
 using System.Linq;
 using UnityEngine;
 
+// 배틀 씬의  몬스터 소환 관리
 public class SpawnUnitManager : Singleton<SpawnUnitManager>
 {
-    // 싱클톤
-    //public static SpawnUnitManager _instance;
-
     Queue<Monster>[] monsterPooling = new Queue<Monster>[(int)EnumList.eKindMonster.COUNT];
 
     // 프리펩
@@ -31,15 +29,7 @@ public class SpawnUnitManager : Singleton<SpawnUnitManager>
 
     public int EnemyMonsterCount => _enemyMonsterCount;
 
-    //protected void Awake()
-    //{
-    //    //_instance = this;
-    //    //summonersCheck = new bool[_summoners.Length];
-    //    //for (int i = 0; i < monsterPooling.Length; i++)
-    //    //{
-    //    //    monsterPooling[i] = new Queue<Monster>();
-    //    //}
-    //}
+    public void SetWaitMonster(EnumList.eKindMonster kind) => _waitMonsterSummon = kind;
 
     private void Start()
     {
@@ -74,12 +64,6 @@ public class SpawnUnitManager : Singleton<SpawnUnitManager>
         monsterPooling[(int)monster._Kind].Enqueue(monster);
 
     }
-
-    
-
-    
-
-    public void SetWaitMonster(EnumList.eKindMonster kind) => _waitMonsterSummon = kind;
 
     // 소환사 소환
     public void SpawnSummoner(eBattleType battleType)
@@ -234,6 +218,7 @@ public class SpawnUnitManager : Singleton<SpawnUnitManager>
         _spawnedUnits.Remove(removeUnit);
     }
 
+    // 유닛 수에서 죽은 유닛 제외
     public void MinusEnemyMonsterCount()
     {
         _enemyMonsterCount--;
@@ -247,6 +232,7 @@ public class SpawnUnitManager : Singleton<SpawnUnitManager>
         }
     }
 
+    // 소환한 유닛을 소환유닛 리스트에 추가하며 정렬
     void spawnUnitSortAdd(Unit unit)
     {
         if (_spawnedUnits.Count == 0)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 순서리스트 UI의 유닛 순서 오브젝트
 public class TurnPref : MonoBehaviour
 {
     [SerializeField] Image _teamBG, _unitImg;
@@ -19,6 +20,7 @@ public class TurnPref : MonoBehaviour
 
     public int GetIdx() => _idx;
 
+    // 몬스터
     public void SetImage(int time, bool playerTeam, EnumList.eKindMonster kindMonster)
     {
         _turnTime = time;
@@ -33,6 +35,7 @@ public class TurnPref : MonoBehaviour
         _unitImg.sprite = _monsterSprite[(int)kindMonster];
     }
 
+    // 소환사
     public void SetImage(int time, bool playerTeam, EnumList.eKindSummoner kindSummoner)
     {
         _turnTime = time;

@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+// 로그 출력 설정
 public static class LogClass
 {
     static bool info = false;
     static bool warn = false;
-    static bool error = true;
+    static bool error = false;
 
     public static void LogInfo(object log)
     {

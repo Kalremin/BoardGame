@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 지원마법 UI창
 public class SummonerMagicWnd : MonoBehaviour
 {
 

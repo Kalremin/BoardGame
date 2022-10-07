@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 지도 씬의 UI 및 포인트 스크립트 관리
 public class MapControl : Singleton<MapControl>
 {
-    //public static MapControl _instance;
-
     public enum eText
     {
         Health,
@@ -21,10 +20,7 @@ public class MapControl : Singleton<MapControl>
 
     int defaultHunger = 15;
     int defaultRegeneration = 2;
-    //private void Awake()
-    //{
-    //    //_instance = this;
-    //}
+    
 
     // Start is called before the first frame update
     void Start()
@@ -77,14 +73,15 @@ public class MapControl : Singleton<MapControl>
                         break;
                 }
 
-                PointEvent(pointState);
+                PointScript(pointState);
 
             }
         }
 
     }
 
-    private void PointEvent(eMapPointState pointState)
+    // 포인트 스크립트
+    private void PointScript(eMapPointState pointState)
     {
         UseHunger(defaultHunger);
 
@@ -124,11 +121,10 @@ public class MapControl : Singleton<MapControl>
                 break;
         }
     }
-
+    
+    // 랜덤
     void RandomPoint()
     {
-
-
         int randomInt = Random.Range(0, 100);
         if (randomInt < 5)
         {
@@ -150,6 +146,7 @@ public class MapControl : Singleton<MapControl>
 
     }
 
+    // 보물
     void TreasurePoint()
     {
         if (Random.Range(0, 100) < 70)
@@ -164,6 +161,7 @@ public class MapControl : Singleton<MapControl>
 
     }
 
+    // 확인
     void ClearPoint()
     {
         int randomInt = Random.Range(0, 100);
@@ -177,14 +175,15 @@ public class MapControl : Singleton<MapControl>
         }
     }
 
+    // 마을
     void TownPoint()
     {
-
         MapManager._instance.MapActive(false);
         _townObj.SetActive(true);
 
     }
 
+    // 싸움
     void BattlePoint()
     {
         UseHunger(5);
@@ -194,6 +193,7 @@ public class MapControl : Singleton<MapControl>
         SceneControlManager._instance.ChangeScene(EnumList.eScence.BattleScene);
     }
 
+    // 보스
     void BossPoint()
     {
         MapManager.readyBattleType = eBattleType.Boss;
@@ -205,10 +205,13 @@ public class MapControl : Singleton<MapControl>
         SceneControlManager._instance.ChangeScene(EnumList.eScence.BattleScene);
     }
 
+    // 재화
     private void GoldPoint()
     {
         GetGolds(Random.Range(10, 100));
     }
+
+    /**/
 
     public void UseGolds(int golds)
     {
@@ -264,7 +267,6 @@ public class MapControl : Singleton<MapControl>
     public void SetLast()
     {
         _lastImg.gameObject.SetActive(true);
-
     }
 
     public void OnClickLastBtn()
@@ -272,7 +274,8 @@ public class MapControl : Singleton<MapControl>
         SceneControlManager._instance.ChangeScene(EnumList.eScence.TitleScene);
     }
 
-
+    /**/
+    // UI 텍스트 효과 부여
     public void SetEffectText(eText enumText, bool positive, string data)
     {
         
@@ -308,6 +311,7 @@ public class MapControl : Singleton<MapControl>
         StartCoroutine(FadeOutFont(effectText));
     }
 
+    // UI 텍스트 효과
     IEnumerator FadeOutFont(Text text)
     {
         text.GetComponent<RectTransform>().transform.localPosition = Vector3.zero;

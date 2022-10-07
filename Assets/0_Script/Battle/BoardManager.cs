@@ -3,14 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+// 배틀 씬의 보드 관리
 public class BoardManager : Singleton<BoardManager>
 {
-    // 싱글톤
-    //public static BoardManager _instance;
 
-    
-    // 프리펩
     [SerializeField]
     GameObject _tile;
 
@@ -29,19 +25,12 @@ public class BoardManager : Singleton<BoardManager>
 
 
     public int TileLength => _tileLength;
+    public Tile GetTile(int x, int y) => tileIdxArrays[x, y];
     public Tile[,] GetTileIdxArrays => tileIdxArrays;
-    public Queue<int> GetResetListIdxTile => resetListIdxTile;
     public List<int> GetTeamTilesIdx => teamTilesIdx;
     public List<int> GetAiEnemyTilesIdx => aiEnemyTilesIdx;
-
-
-    //private void Awake()
-    //{
-    //    //_instance = this;
-    //    resetListIdxTile = new Queue<int>();
-    //    teamTilesIdx = new List<int>();
-    //    aiEnemyTilesIdx = new List<int>();
-    //}
+    public Queue<int> GetResetListIdxTile => resetListIdxTile;
+    
 
     private void Start()
     {
@@ -101,7 +90,7 @@ public class BoardManager : Singleton<BoardManager>
 
     }
 
-
+    // 이동 타일의 색상으로 변경
     public void MoveTile(Unit playUnit, eBattleType battleType)
     {
 
@@ -145,8 +134,6 @@ public class BoardManager : Singleton<BoardManager>
                         aiEnemyTilesIdx.Add(i + j * size);
                     }
 
-                    
-
                     continue;
                 }
 
@@ -165,6 +152,7 @@ public class BoardManager : Singleton<BoardManager>
         HighlightTile(EnumList.eTileHighlightStatus.Move, battleType, tempTile.X, tempTile.Y);
     }
 
+    // 공격 타일의 색상으로 변경
     public void AttackTile()
     {
         Tile unitTile = BattleManager._instance.PlayUnit.transform.parent.GetComponent<Tile>();
@@ -181,6 +169,7 @@ public class BoardManager : Singleton<BoardManager>
             HighlightTile(EnumList.eTileHighlightStatus.Enemy, battleType, unitTile.X, unitTile.Y + 1);
     }
 
+    // 마법 타일의 색상으로 변경
     public void MagicTile()
     {
         eBattleType battleType = BattleManager._instance.BattleType;
@@ -225,6 +214,7 @@ public class BoardManager : Singleton<BoardManager>
         }
     }
 
+    // 소환 타일의 색상으로 변경-> 마법 타일의 색상으로 변경
     public void SummonTile()
     {
         Tile unitTile = BattleManager._instance.PlayUnit.transform.parent.GetComponent<Tile>();
@@ -242,7 +232,7 @@ public class BoardManager : Singleton<BoardManager>
             HighlightTile(EnumList.eTileHighlightStatus.Magic, battleType, unitTile.X, unitTile.Y + 1);
     }
 
-    // 변환된 타일 리셋
+    // 변경한 타일 리셋
     public void ResetListTile()
     {
         while (resetListIdxTile.Count > 0)
@@ -253,19 +243,14 @@ public class BoardManager : Singleton<BoardManager>
         }
     }
 
+    // 해당 타일의 색상 리셋
     public void ResetTile(Tile tile)
     {
         tile.transform.GetChild(0).GetComponent<MeshRenderer>().material = _noneM;
         tile.TileStatus = EnumList.eTileHighlightStatus.None;
     }
 
-    public Tile GetTile(int x, int y)
-    {
-        
-        return tileIdxArrays[x,y];
-    }
-
-    // 타일 사용 가능 확인 / T: 유닛 존재, F: 유닛 비존재
+    // 타일 사용 가능 여부 / T: 유닛 존재, F: 유닛 비존재
     public bool ExistUnitInTile(int x, int y)
     {
         if (!CheckInTileBound(x, y))
@@ -275,7 +260,7 @@ public class BoardManager : Singleton<BoardManager>
         return tileIdxArrays[x,y].transform.childCount > 1;
     }
 
-    // 경계선 확인 / T: 범위 내, F: 범위 밖
+    // 경계선 여부 / T: 범위 내, F: 범위 밖
     public bool CheckInTileBound(int x, int y)
     {
         if (x < 0 || x >= (int)BattleManager._instance.BattleType || y < 0 || y >= (int)BattleManager._instance.BattleType)

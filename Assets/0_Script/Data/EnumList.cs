@@ -7,12 +7,14 @@ using UnityEngine;
 
 public class EnumList
 {
+    // 소환사 종류
     public enum eKindSummoner
     {
         Tester, OldMan, CastleGuard,
         COUNT
     }
 
+    // 몬스터 종류
     public enum eKindMonster
     {
         FireStone = 0 , GoblinRogue, Grunt, Bat, Ghost, Slime, Rabbit,
@@ -20,6 +22,7 @@ public class EnumList
         COUNT
     }
 
+    // 유닛 상태
     public enum eStateUnit
     {
         AtkUp,
@@ -30,11 +33,13 @@ public class EnumList
         SpdDown
     }
 
+    // 방향
     public enum eUnitWay
     {
         N, E, S, W
     }
 
+    // 마법 종류
     public enum eMagicList
     {
         None = -1,
@@ -49,6 +54,7 @@ public class EnumList
         SPDDOWN
     }
 
+    // 타일 상태
     public enum eTileHighlightStatus
     {
         None,
@@ -57,6 +63,7 @@ public class EnumList
         Magic
     }
 
+    // 타일의 몬스터 존재 여부
     public enum eTileUnit
     {
         Wall=-1,
@@ -65,6 +72,7 @@ public class EnumList
         Monster
     }
 
+    // UI창
     public enum eUIWnd
     {
         MenuActBtns = 0,
@@ -74,6 +82,7 @@ public class EnumList
         PauseWnd
     }
 
+    // 애니메이션 매개변수
     public enum eAnimatorParameter
     {
         Tri_Attack,
@@ -84,6 +93,7 @@ public class EnumList
         Bool_Death
     }
 
+    // 씬 종류
     public enum eScence
     {
         TitleScene=1,
@@ -91,6 +101,7 @@ public class EnumList
         BattleScene
     }
 
+    // 유닛 방향 
     public struct sUnitWay
     {
         Vector3 N { get { return new Vector3(0, 0, 0); } }

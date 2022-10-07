@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 오브젝트 이펙트 스크립트
 public class EffectObjScript : MonoBehaviour
 {
     [SerializeField] float _time = 5f;

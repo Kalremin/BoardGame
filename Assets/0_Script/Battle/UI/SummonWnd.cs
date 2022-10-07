@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 소환 UI창
 public class SummonWnd : Singleton<SummonWnd>
 {
-    //public static SummonWnd _instance;
 
     [SerializeField]
     GameObject _monsterView, _btnMonster;
@@ -13,12 +13,6 @@ public class SummonWnd : Singleton<SummonWnd>
     RectTransform _contentRect;
 
     int rectHeight = 600;
-
-    //private void Awake()
-    //{
-    //    //_instance = this;
-    //}
-
 
     // Update is called once per frame
     void Update()

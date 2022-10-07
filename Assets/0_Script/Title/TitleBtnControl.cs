@@ -10,6 +10,7 @@ enum eTitleState
     Explain
 }
 
+// 타이틀 씬의 버튼 스크립트
 public class TitleBtnControl : MonoBehaviour
 {
     [SerializeField] GameObject SelectCharObj, OptionObj, ExplainObj;

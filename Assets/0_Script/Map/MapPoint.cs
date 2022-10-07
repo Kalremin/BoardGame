@@ -20,6 +20,7 @@ public enum eMapPointState
 
 }
 
+// 지도 씬의 포인트
 public class MapPoint : MonoBehaviour
 {
     [SerializeField] Sprite[] _mapIcons;

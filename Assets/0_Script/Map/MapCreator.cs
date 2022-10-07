@@ -6,6 +6,7 @@ using DelaunatorSharp;
 using DelaunatorSharp.Unity;
 using DelaunatorSharp.Unity.Extensions;
 
+// 지도 씬의 지도 생성
 public class MapCreator : MonoBehaviour
 {
 
@@ -27,17 +28,13 @@ public class MapCreator : MonoBehaviour
 
     MapPoint startPoint, endPoint;
 
-    private void Start()
-    {
-    }
-
     private void OnEnable()
     {
         if (delaunator == null)
             CreateMapStage();
     }
 
-
+    // 스테이지 지도 생성
     public void CreateMapStage()
     {
         var stagePoints = UniformPoissonDiskSampler.SampleRectangle(_lowerLeft.position, _topRight.position, minimumDistance);

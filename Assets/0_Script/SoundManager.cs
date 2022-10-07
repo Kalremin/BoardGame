@@ -21,10 +21,9 @@ public enum eBackgroundSound
     Defeat
 }
 
+// 게임 소리 
 public class SoundManager : Singleton<SoundManager>
 {
-    //public static SoundManager _instance;
-
     [SerializeField] 
     AudioSource _playerSound;
     [SerializeField]
@@ -32,7 +31,6 @@ public class SoundManager : Singleton<SoundManager>
 
     private new void Awake()
     {
-        //_instance = this;
         base.Awake();
         DontDestroyOnLoad(gameObject);
     }

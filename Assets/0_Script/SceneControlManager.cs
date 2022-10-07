@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// 게임 씬의 전환
 public class SceneControlManager : Singleton<SceneControlManager>
 {
-    //public static SceneControlManager _instance;
-
     EnumList.eScence _sceneState;
 
     protected new void Awake()

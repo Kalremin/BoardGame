@@ -4,20 +4,16 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 유닛 리스트 UI창
 public class UnitTurn : Singleton<UnitTurn>
 {
-    //public static UnitTurn _instance;
-
+   
     [SerializeField] GameObject _enableUI, _disableUI;
     [SerializeField] GameObject _imagePref;
 
     Queue<GameObject> _turnObjPooling = new Queue<GameObject>();
 
-    //private void Awake()
-    //{
-    //    //_instance = this;
-    //}
-    // 유닛 차례 프리펩 순서 조정
+    // 유닛 프리펩 순서 조정
     public void NextTurnUnitUI(List<GameObject> unitList)
     {
         if (unitList.Count == 0)
@@ -57,7 +53,7 @@ public class UnitTurn : Singleton<UnitTurn>
         return temp;
     }
 
-    // 유닛 차례 프리펩 생성
+    // 유닛 순서 프리펩 생성
     public void SetTurnUIPref(Unit unit, EnumList.eKindSummoner kind)
     {
         GameObject temp;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//게임 설정 스크립트
 public class OptionScript : MonoBehaviour
 {
     [SerializeField] Slider _background;
@@ -37,8 +38,6 @@ public class OptionScript : MonoBehaviour
     {
         SoundManager._instance.ChangeEffectVolume(volume);
     }
-
-
 
     public void ClickBackBtn()
     {

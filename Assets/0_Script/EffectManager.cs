@@ -12,6 +12,7 @@ public enum eEffect
     Debuff
 }
 
+// 이펙트 부여
 public class EffectManager : Singleton<EffectManager>
 {
     //public static EffectManager _instance;

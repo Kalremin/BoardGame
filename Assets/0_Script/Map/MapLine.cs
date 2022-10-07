@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 지도 위의 선분
 public class MapLine : MonoBehaviour
 {
     [SerializeField]

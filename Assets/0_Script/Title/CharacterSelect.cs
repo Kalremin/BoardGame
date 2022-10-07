@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 타이틀 씬의 캐릭터 선택 UI창
 public class CharacterSelect : MonoBehaviour
 {
     [SerializeField] GameObject summonerObj;

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 public struct Edge
 {
     int a, b;
-    //Edge() { a = b = 0; }
     Edge(int a, int b)
     {
         if (a > b)

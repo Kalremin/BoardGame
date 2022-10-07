@@ -15,6 +15,8 @@ using UnityEngine.EventSystems;
 활동(이동, 공격, 마법, 소환) 애니메이션 적용
 
  */
+
+// 배틀 종류
 public enum eBattleType
 {
     Normal=8,
@@ -22,6 +24,7 @@ public enum eBattleType
     Boss=10//14
 }
 
+// 배틀 상태
 public enum eBattleState
 {
     FindUnitTurn,
@@ -40,7 +43,6 @@ public enum eBattleState
 
     BattleEnd
 }
-
 
 public class BattleManager : Singleton<BattleManager>
 {
@@ -71,11 +73,6 @@ public class BattleManager : Singleton<BattleManager>
     public void SetIsBuff(bool buff) => isBuff = buff;
     public bool GetIsBuff() => isBuff;
 
-
-    //private void Awake()
-    //{
-    //    //_instance = this;
-    //}
 
     private void Start()
     {
@@ -137,122 +134,10 @@ public class BattleManager : Singleton<BattleManager>
         ZoomCam();
     }
 
-    void ZoomCam()
-    {
-        Camera.main.fieldOfView += Input.mouseScrollDelta.y;
-        if (Camera.main.fieldOfView < 40)
-            Camera.main.fieldOfView = 40;
-
-        if (Camera.main.fieldOfView > 80)
-            Camera.main.fieldOfView = 80;
-    }
-
-    private void ActAni()
-    {
-        
-    }
-
-    private void BattleEnd()
-    {
-        GUIScript._instance.OpenWnd(EnumList.eUIWnd.ResultWnd);
-    }
-
-    private void MagicAssist()
-    {
-        if (_playUnit._PlayerTeam)
-        {
-
-            if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit)) 
-                {
-                    Tile tempTile = hit.transform.GetComponentInParent<Tile>();
-
-                    if(tempTile.TileStatus == EnumList.eTileHighlightStatus.Magic)
-                    {
-                        BoardManager._instance.ResetListTile();
-                        _playUnit.GetComponent<Summoner>().UseMagic(tempTile.GetUnitObject());
-                        tempTile.GetUnitObject().GetComponent<Unit>().AddState(_readyState);
-                        _currentState = eBattleState.ActAni;
-
-                        GUI_ActLog._instance.MagicAssistLog(_playUnit, tempTile.GetUnitObject().GetComponent<Unit>());
-                    }
-                }
-            }
-
-            if (Input.GetMouseButtonDown(1) && !IsPointerOverUIObject())
-            {
-                BoardManager._instance.ResetListTile();
-                GUIScript._instance.OpenWnd(EnumList.eUIWnd.MagicWnd);
-            }
-        }
-        
-        
-    }
-
-    private void MagicAttack()
-    {
-
-        if (_playUnit._PlayerTeam)
-        {
-
-            if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    Tile tempTile = hit.transform.GetComponentInParent<Tile>();
-
-                    if (tempTile.TileStatus == EnumList.eTileHighlightStatus.Magic)
-                    {
-                        BoardManager._instance.ResetListTile();
-                        _playUnit.GetComponent<Monster>().UseMagic(tempTile.GetUnitObject());
-                        _currentState = eBattleState.ActAni;
-
-                        GUI_ActLog._instance.MagicAttackLog(_playUnit, tempTile.GetUnitObject().GetComponent<Unit>());
-                    }
-                }
-            }
-
-            if (Input.GetMouseButtonDown(1) && !IsPointerOverUIObject())
-            {
-                BoardManager._instance.ResetListTile();
-                _directionWay.SetActive(true);
-                GUIScript._instance.OpenWnd(EnumList.eUIWnd.MenuActBtns);
-                _currentState = eBattleState.SelectActRotate;
-            }
-
-        }
-        else
-        {
-            
-            Tile tempTile = AutoSelect.SelectTileAttack(_playUnit);
-            
-            if (tempTile == null )
-            {
-                _currentState = eBattleState.ReadyWait;
-                AutoSelect.ResetTargetTile();
-                return;
-            }
-
-            GameObject tempObj = tempTile.transform.GetChild(1).gameObject;
-            _playUnit.GetComponent<Monster>().UseMagic(tempObj);
-            _currentState = eBattleState.ActAni;
-
-            GUI_ActLog._instance.MagicAttackLog(_playUnit, tempTile.GetUnitObject().GetComponent<Unit>());
-            AutoSelect.ResetTargetTile();
-        }
-    }
-
     // 유닛의 차례 찾기
     void FindUnitTurn()
     {
-        if(SpawnUnitManager._instance.EnemyMonsterCount == 0)
+        if (SpawnUnitManager._instance.EnemyMonsterCount == 0)
         {
             _currentState = eBattleState.BattleEnd;
             return;
@@ -261,7 +146,7 @@ public class BattleManager : Singleton<BattleManager>
         _playUnit = SpawnUnitManager._instance.TurnUnit();
         unitTile = _playUnit.transform.parent.GetComponent<Tile>();
         _currentState = eBattleState.HighLightUnit;
-        
+
     }
 
     // 플레이할 유닛 포커스
@@ -270,8 +155,8 @@ public class BattleManager : Singleton<BattleManager>
 
         _directionWay.SetActive(false);
         BoardManager._instance.MoveTile(_playUnit, _battleType);
-        
-        _camPos.eulerAngles = _playUnit._PlayerTeam ? Vector3.zero : new Vector3(0,180,0);
+
+        _camPos.eulerAngles = _playUnit._PlayerTeam ? Vector3.zero : new Vector3(0, 180, 0);
         _camPos.position =
             new Vector3(_playUnit.transform.position.x, 20, _playUnit.transform.position.z) + (_playUnit._PlayerTeam ? defCamPos : -defCamPos);
 
@@ -281,17 +166,14 @@ public class BattleManager : Singleton<BattleManager>
     // 이동할 위치 선정
     void SelectMove()
     {
-        
-
         if (_playUnit.GetComponent<Unit>()._PlayerTeam)
         {
-            
 
             if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                
+
                 if (Physics.Raycast(ray, out hit) && hit.transform.CompareTag("Tile"))
                 {
                     Tile tempTile = hit.transform.parent.GetComponent<Tile>();
@@ -301,11 +183,11 @@ public class BattleManager : Singleton<BattleManager>
                         _playUnit.transform.SetParent(tempTile.transform);
                         _playUnit.transform.LookAt(_playUnit.transform.parent);
                         _playUnit.GetComponent<Unit>().Move();
-                        
+
                         BoardManager._instance.ResetListTile();
 
-                        _camPos.SetParent( _playUnit.transform);
-                        
+                        _camPos.SetParent(_playUnit.transform);
+
 
                         _currentState = eBattleState.MoveAni;
                     }
@@ -323,7 +205,7 @@ public class BattleManager : Singleton<BattleManager>
             {
                 delayTime = 0f;
 
-                if(_playUnit.CompareTag("Monster") && AutoSelect.CheckTileAttackUnit(_playUnit))
+                if (_playUnit.CompareTag("Monster") && AutoSelect.CheckTileAttackUnit(_playUnit))
                 {
                     _currentState = eBattleState.ReadyAttack;
                     return;
@@ -331,11 +213,11 @@ public class BattleManager : Singleton<BattleManager>
 
                 Tile tempTile = AutoSelect.SelectTileMove(_playUnit);
 
-                _playUnit.transform.SetParent( tempTile != null ? tempTile.transform : _playUnit.transform.parent);
+                _playUnit.transform.SetParent(tempTile != null ? tempTile.transform : _playUnit.transform.parent);
                 _playUnit.transform.LookAt(_playUnit.transform.parent);
                 _playUnit.GetComponent<Unit>().Move();
-                _camPos.SetParent( _playUnit.transform);
-                
+                _camPos.SetParent(_playUnit.transform);
+
                 _currentState = eBattleState.MoveAni;
 
             }
@@ -347,7 +229,7 @@ public class BattleManager : Singleton<BattleManager>
     {
         if (Vector3.Distance(_playUnit.transform.localPosition, Vector3.zero) > 0.5f)
         {
-            _playUnit.transform.localPosition = Vector3.MoveTowards(_playUnit.transform.localPosition, Vector3.zero, Time.deltaTime*10);
+            _playUnit.transform.localPosition = Vector3.MoveTowards(_playUnit.transform.localPosition, Vector3.zero, Time.deltaTime * 10);
         }
         else
         {
@@ -362,14 +244,13 @@ public class BattleManager : Singleton<BattleManager>
             // 방향 자동 설정            
             SetRotation();
 
-            if(_playUnit._PlayerTeam)
+            if (_playUnit._PlayerTeam)
                 GUIScript._instance.OpenWnd(EnumList.eUIWnd.MenuActBtns);
             _currentState = eBattleState.SelectActRotate;
         }
     }
 
-
-    // 이동 후 회전
+    // 이동한 후 회전 선택, 행동 준비
     void UnitRotate()
     {
         if (_playUnit._PlayerTeam)
@@ -412,7 +293,7 @@ public class BattleManager : Singleton<BattleManager>
                     isOpenWnd = false;
                     return;
                 }
-                _playUnit.transform.SetParent( unitTile.transform);
+                _playUnit.transform.SetParent(unitTile.transform);
                 _playUnit.transform.localPosition = Vector3.zero;
 
                 GUIScript._instance.CloseWnd(EnumList.eUIWnd.MenuActBtns);
@@ -424,15 +305,14 @@ public class BattleManager : Singleton<BattleManager>
             _directionWay.SetActive(false);
 
             int tempInt = UnityEngine.Random.Range(0, 100);
-            
+
             if (_playUnit.CompareTag("Summoner"))
             {
-                
+
                 if (tempInt >= 35)
                     _currentState = eBattleState.SelectSummon;
                 else
                     _currentState = eBattleState.ReadyWait;
-
 
             }
             else
@@ -453,41 +333,177 @@ public class BattleManager : Singleton<BattleManager>
                 else
                     _currentState = eBattleState.ReadyWait;
 
-
             }
 
-            
         }
     }
-    private void MoveCam()
+
+    // 유닛의 대기
+    void ReadyWait()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            _camPos.Translate(Vector3.forward*Time.deltaTime*50);
-            _camPos.Translate(Vector3.left * Time.deltaTime*50);
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            _camPos.Translate(Vector3.back * Time.deltaTime * 50);
-            _camPos.Translate(Vector3.right * Time.deltaTime * 50);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            _camPos.Translate(Vector3.back * Time.deltaTime * 50);
-            _camPos.Translate(Vector3.left * Time.deltaTime * 50);
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            _camPos.Translate(Vector3.forward * Time.deltaTime * 50);
-            _camPos.Translate(Vector3.right * Time.deltaTime * 50);
-        }
-        
+        GUI_ActLog._instance.WaitLog(_playUnit);
+        _currentState = eBattleState.FindUnitTurn;
     }
 
-    // 몬스터 소환
+    // 유닛의 공격
+    private void ReadyAttack()
+    {
+        _directionWay.SetActive(false);
+
+        if (_playUnit._PlayerTeam)
+        {
+
+            if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    Tile tempTile = hit.transform.GetComponentInParent<Tile>();
+
+                    if (tempTile.TileStatus == EnumList.eTileHighlightStatus.Enemy)
+                    {
+                        _playUnit.transform.LookAt(tempTile.transform.position);
+                        SetRotation();
+                        _playUnit.GetComponent<Monster>().Attack(tempTile.GetUnitObject());
+                        _currentState = eBattleState.ActAni;
+
+                        GUI_ActLog._instance.AttackLog(_playUnit, tempTile.GetUnitObject().GetComponent<Unit>());
+                    }
+
+                }
+            }
+
+            if (Input.GetMouseButtonDown(1) && !IsPointerOverUIObject())
+            {
+                BoardManager._instance.ResetListTile();
+                GUIScript._instance.OpenWnd(EnumList.eUIWnd.MenuActBtns);
+                _directionWay.SetActive(true);
+                _currentState = eBattleState.SelectActRotate;
+
+            }
+        }
+        else
+        {
+
+            Tile tempTile = AutoSelect.SelectTileAttack(_playUnit);
+
+            if (tempTile == null)
+            {
+                _currentState = eBattleState.ReadyWait;
+                AutoSelect.ResetTargetTile();
+                return;
+            }
+
+            _playUnit.transform.LookAt(tempTile.transform);
+            SetRotation();
+            _playUnit.GetComponent<Monster>().Attack(tempTile.GetUnitObject());
+
+
+            BoardManager._instance.ResetListTile();
+            _currentState = eBattleState.ActAni;
+
+            GUI_ActLog._instance.AttackLog(_playUnit, tempTile.GetUnitObject().GetComponent<Unit>());
+            AutoSelect.ResetTargetTile();
+        }
+
+    }
+
+    // 유닛(몬스터)의 마법 공격
+    private void MagicAttack()
+    {
+
+        if (_playUnit._PlayerTeam)
+        {
+
+            if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    Tile tempTile = hit.transform.GetComponentInParent<Tile>();
+
+                    if (tempTile.TileStatus == EnumList.eTileHighlightStatus.Magic)
+                    {
+                        BoardManager._instance.ResetListTile();
+                        _playUnit.GetComponent<Monster>().UseMagic(tempTile.GetUnitObject());
+                        _currentState = eBattleState.ActAni;
+
+                        GUI_ActLog._instance.MagicAttackLog(_playUnit, tempTile.GetUnitObject().GetComponent<Unit>());
+                    }
+                }
+            }
+
+            if (Input.GetMouseButtonDown(1) && !IsPointerOverUIObject())
+            {
+                BoardManager._instance.ResetListTile();
+                _directionWay.SetActive(true);
+                GUIScript._instance.OpenWnd(EnumList.eUIWnd.MenuActBtns);
+                _currentState = eBattleState.SelectActRotate;
+            }
+
+        }
+        else
+        {
+
+            Tile tempTile = AutoSelect.SelectTileAttack(_playUnit);
+
+            if (tempTile == null)
+            {
+                _currentState = eBattleState.ReadyWait;
+                AutoSelect.ResetTargetTile();
+                return;
+            }
+
+            GameObject tempObj = tempTile.transform.GetChild(1).gameObject;
+            _playUnit.GetComponent<Monster>().UseMagic(tempObj);
+            _currentState = eBattleState.ActAni;
+
+            GUI_ActLog._instance.MagicAttackLog(_playUnit, tempTile.GetUnitObject().GetComponent<Unit>());
+            AutoSelect.ResetTargetTile();
+        }
+    }
+
+    // 유닛(소환사)의 마법 지원
+    private void MagicAssist()
+    {
+        if (_playUnit._PlayerTeam)
+        {
+
+            if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    Tile tempTile = hit.transform.GetComponentInParent<Tile>();
+
+                    if (tempTile.TileStatus == EnumList.eTileHighlightStatus.Magic)
+                    {
+                        BoardManager._instance.ResetListTile();
+                        _playUnit.GetComponent<Summoner>().UseMagic(tempTile.GetUnitObject());
+                        tempTile.GetUnitObject().GetComponent<Unit>().AddState(_readyState);
+                        _currentState = eBattleState.ActAni;
+
+                        GUI_ActLog._instance.MagicAssistLog(_playUnit, tempTile.GetUnitObject().GetComponent<Unit>());
+                    }
+                }
+            }
+
+            if (Input.GetMouseButtonDown(1) && !IsPointerOverUIObject())
+            {
+                BoardManager._instance.ResetListTile();
+                GUIScript._instance.OpenWnd(EnumList.eUIWnd.MagicWnd);
+            }
+        }
+
+    }
+
+    // 소환사의 몬스터 소환
     private void SelectSummon()
     {
 
@@ -525,83 +541,91 @@ public class BattleManager : Singleton<BattleManager>
         {
             Tile tempTile = AutoSelect.SelectTileSummon(_playUnit);
 
-            if(tempTile==null)
+            if (tempTile == null)
             {
                 _currentState = eBattleState.ReadyWait;
                 return;
             }
 
-            
+
             SpawnUnitManager._instance.SetWaitMonster((EnumList.eKindMonster)UnityEngine.Random.Range(0, (int)EnumList.eKindMonster.COUNT));
             _playUnit.GetComponent<Summoner>().Summon(tempTile);
             _currentState = eBattleState.ActAni;
         }
     }
 
-    // 공격할 타일 선택
-    private void ReadyAttack()
+    // 애니메이션 작동을 위한 빈 코드
+    private void ActAni() { }
+
+    // 결과 창 활성화
+    private void BattleEnd()
     {
-        _directionWay.SetActive(false);
-
-        if (_playUnit._PlayerTeam)
-        {
-
-            if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    Tile tempTile = hit.transform.GetComponentInParent<Tile>();
-
-                    if(tempTile.TileStatus == EnumList.eTileHighlightStatus.Enemy)
-                    {
-                        _playUnit.transform.LookAt(tempTile.transform.position);
-                        SetRotation();
-                        _playUnit.GetComponent<Monster>().Attack(tempTile.GetUnitObject());
-                        _currentState = eBattleState.ActAni;
-
-                        GUI_ActLog._instance.AttackLog(_playUnit, tempTile.GetUnitObject().GetComponent<Unit>());
-                    }
-
-                }
-            }
-
-            if (Input.GetMouseButtonDown(1) && !IsPointerOverUIObject())
-            {
-                BoardManager._instance.ResetListTile();
-                GUIScript._instance.OpenWnd(EnumList.eUIWnd.MenuActBtns);
-                _directionWay.SetActive(true);
-                _currentState = eBattleState.SelectActRotate;
-
-            }
-        }
-        else
-        {
-
-            Tile tempTile = AutoSelect.SelectTileAttack(_playUnit);
-            
-            if(tempTile == null )
-            {
-                _currentState = eBattleState.ReadyWait;
-                AutoSelect.ResetTargetTile();
-                return;
-            }
-            
-            _playUnit.transform.LookAt(tempTile.transform);
-            SetRotation();
-            _playUnit.GetComponent<Monster>().Attack(tempTile.GetUnitObject());
-
-            
-            BoardManager._instance.ResetListTile();
-            _currentState = eBattleState.ActAni;
-
-            GUI_ActLog._instance.AttackLog(_playUnit, tempTile.GetUnitObject().GetComponent<Unit>());
-            AutoSelect.ResetTargetTile();
-        }
-
+        GUIScript._instance.OpenWnd(EnumList.eUIWnd.ResultWnd);
     }
+
+    // 카메라 줌 인/아웃
+    void ZoomCam()
+    {
+        Camera.main.fieldOfView += Input.mouseScrollDelta.y;
+        if (Camera.main.fieldOfView < 40)
+            Camera.main.fieldOfView = 40;
+
+        if (Camera.main.fieldOfView > 80)
+            Camera.main.fieldOfView = 80;
+    }
+
+
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+    private void MoveCam()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            _camPos.Translate(Vector3.forward*Time.deltaTime*50);
+            _camPos.Translate(Vector3.left * Time.deltaTime*50);
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            _camPos.Translate(Vector3.back * Time.deltaTime * 50);
+            _camPos.Translate(Vector3.right * Time.deltaTime * 50);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            _camPos.Translate(Vector3.back * Time.deltaTime * 50);
+            _camPos.Translate(Vector3.left * Time.deltaTime * 50);
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            _camPos.Translate(Vector3.forward * Time.deltaTime * 50);
+            _camPos.Translate(Vector3.right * Time.deltaTime * 50);
+        }
+        
+    }
+
+    
+
+    
 
 
     // 배틀 맵 생성
@@ -630,11 +654,7 @@ public class BattleManager : Singleton<BattleManager>
             _playUnit.GetComponent<Unit>().SetWay(EnumList.eUnitWay.S);
     }
 
-    void ReadyWait()
-    {
-        GUI_ActLog._instance.WaitLog(_playUnit);
-        _currentState = eBattleState.FindUnitTurn;
-    }
+    
 
     public void ChangeState(eBattleState state)
     {

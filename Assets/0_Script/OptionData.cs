@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 게임 설정
 public static class OptionData
 {
     const string volumeBgmStr = "VolumeBGM";

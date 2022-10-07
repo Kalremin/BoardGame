@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+// 보상 UI창의 스크립트
 public class RewardScript : MonoBehaviour
 {
     [SerializeField]
